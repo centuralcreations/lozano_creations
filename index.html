@@ -109,8 +109,10 @@
 		<a href="https://centuralcreations.github.io/lozano_creations/marker_tracking.html">Marker Based Tracking Example</a>
 	</body>
 	<script type="module">
+		import { ethers } from "https://cdn.ethers.io/lib/ethers-5.0.umd.min.js";
+		
 		if (typeof window.ethereum !== 'undefined') {
-			import { ethers } from "https://cdn.ethers.io/lib/ethers-5.2.esm.min.js";
+			
 			
 			console.log("MetaMask Found");
 			async function setup_balance_view( string_public_key ) {
