@@ -110,12 +110,23 @@
 	</body>
 	<script type="module">
 		if (typeof window.ethereum !== 'undefined') {
+			import { ethers } from "https://cdn.ethers.io/lib/ethers-5.2.esm.min.js";
+			
 			console.log("MetaMask Found");
+			async function setup_balance_view( string_public_key ) {
+				const { BigNumber } = await provider.getBalance(string_public_key);	
+				let element_balance_view = document.createElement('h3');
+				element_balance_view.innerText = BigNumber;
+				
+				document.body.appendChild(element_balance_view);
+			}
 			async function request_metamask_account() {
 				const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 				const account = accounts[0];
 				let element_show_account = document.createElement('h2');
 				element_show_account.innerText = account;
+				setup_balance_view( account );
+				
 				element_show_account.classList.add("show_account_header");
 				document.body.appendChild(element_show_account);
 			}
