@@ -108,17 +108,26 @@
 		<a href="https://centuralcreations.github.io/lozano_creations/location_tracking.html">Location Based Tracking Example</a>
 		<a href="https://centuralcreations.github.io/lozano_creations/marker_tracking.html">Marker Based Tracking Example</a>
 	</body>
-	<script>
+	<script type="module">
 		if (typeof window.ethereum !== 'undefined') {
 			console.log("MetaMask Found");
+			async function request_metamask_account() {
+				const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+				const account = accounts[0];
+				let element_show_account = document.createElement('h2');
+				element_show_account.innerText = account;
+				element_show_account.classList.add("show_account_header");
+				element_show_account.innerHTML = account;
+				document.body.appendChild(element_show_account);
+			}
 			let element_metamask_button = document.createElement('button');
 			element_metamask_button.innerText = `Connect Metamask`;
 			element_metamask_button.classList.add("enable_ethereum_button");
-			element_metamask_button.addEventListener('click', () => {
-			  //Will Start the metamask extension
-			  ethereum.request({ method: 'eth_requestAccounts' });
-			});
 			document.body.appendChild(element_metamask_button);
+			
+			element_metamask_button.addEventListener('click', () => {
+				request_metamask_account()
+			});
 		} else {
 			console.log("MetaMask Not Found");		
 		}
