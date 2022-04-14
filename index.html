@@ -112,6 +112,7 @@
 		if (typeof window.ethereum !== 'undefined') {
 			console.log("MetaMask Found");
 			let element_metamask_button = document.createElement('button');
+			element_meta_mask_button.innerText = `Connect Metamask`;
 			element_metamask_button.classList.add("enable_ethereum_button");
 			element_metamask_button.addEventListener('click', () => {
 			  //Will Start the metamask extension
