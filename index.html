@@ -123,9 +123,9 @@
 
 			console.log("MetaMask Found");
 			async function setup_balance_view( string_public_key ) {
-				const { BigNumber } = await provider.getBalance(string_public_key);	
+				const balance_big_number = await provider.getBalance(string_public_key);	
 				let element_balance_view = document.createElement('h3');
-				element_balance_view.innerText = BigNumber;
+				element_balance_view.innerText = balance_big_number;
 				
 				document.body.appendChild(element_balance_view);
 			}
