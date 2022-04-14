@@ -108,4 +108,18 @@
 		<a href="https://centuralcreations.github.io/lozano_creations/location_tracking.html">Location Based Tracking Example</a>
 		<a href="https://centuralcreations.github.io/lozano_creations/marker_tracking.html">Marker Based Tracking Example</a>
 	</body>
+	<script>
+		if (typeof window.ethereum !== 'undefined') {
+			console.log("MetaMask Found");
+			let element_metamask_button = document.createElement('button');
+			element_metamask_button.classList.add("enable_ethereum_button");
+			element_metamask_button.addEventListener('click', () => {
+			  //Will Start the metamask extension
+			  ethereum.request({ method: 'eth_requestAccounts' });
+			});
+			document.body.appendChild(element_metamask_button);
+		} else {
+			console.log("MetaMask Not Found");		
+		}
+	</script>
 </html>
