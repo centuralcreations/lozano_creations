@@ -125,7 +125,7 @@
 			async function get_code( ) {
 				const code = await provider.getCode("registrar.firefly.eth");	
 				let element_code = document.createElement('h3')
-				element_code.innerText `code: ${code}`
+				element_code.innerText = `code: ${code}`
 				
 				return code
 			}
