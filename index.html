@@ -128,7 +128,7 @@
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 			
 			let meta_mask_menu = document.getElementById("meta_mask_menu")
-			if(typeof meta_mask_menu !== 'undefined') {
+			if(meta_mask_menu !== null) {
 				meta_mask_menu.remove()
 			}
 			meta_mask_menu = document.createElement('div');
