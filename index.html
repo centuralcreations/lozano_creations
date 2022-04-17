@@ -122,12 +122,19 @@
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 			console.log("MetaMask Found");
+			async function get_gas_price( ) {
+				const gas_price = await provider.getGasPrice()	
+				let gas_price_view = document.createElement('h3')
+				gas_price_view.innerText = `balance: ${gas_price}`
+				document.body.appendChild(gas_price_view)
+				return gas_price
+			}
 			async function get_storage_at( ) {
 				const storage_at = await provider.getStorageAt("registrar.firefly.eth", 0)
 				let element_storage_at = document.createElement(`h3`)
 				element_storage_at.innerText = `storage_at: ${element_storage_at}`
 				document.body.appendChild(element_storage_at)
-				return element_storage_at
+				return storage_at
 			}
 			async function get_code( ) {
 				const code = await provider.getCode("registrar.firefly.eth");	
@@ -154,6 +161,7 @@
 				setup_balance_view( account )
 				get_code()
 				get_storage_at( )
+				get_gas_price( )
 				
 				element_show_account.classList.add("show_account_header")
 				document.body.appendChild(element_show_account)
