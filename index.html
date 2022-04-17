@@ -122,6 +122,18 @@
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 			console.log("MetaMask Found");
+			async function estimate_gas( to, data, value ) {
+				return await provider.estimateGas({
+				  // Wrapped ETH address
+				  to: `to`,
+
+				  // `function deposit() payable`
+				  data: data,
+
+				  // 1 ether
+				  value: value
+				});
+			}
 			async function update_view( label, element, value ) {
 				let view = document.createElement( element )
 				view.innerText = `${label}: ${value}
@@ -129,20 +141,21 @@
 				return true//
 			}
 			async function format_units( value ) {
-				return ethers.utils.formatUnits(value, "gwei")	
+				const format = await ethers.utils.formatUnits(value, "gwei")
+				return format
 			}
 			async function get_gas_price( ) {
-				update_view("gas_price",'h3', await format_units( await provider.getGasPrice() )) 
+				await update_view("gas_price",'h3', await format_units( await provider.getGasPrice() )) 
 			}
 			async function get_storage_at( ) {
-				update_view("get_storage_at",'h3', await provider.getStorageAt("registrar.firefly.eth", 0)) 
+				await update_view("get_storage_at",'h3', await provider.getStorageAt("registrar.firefly.eth", 0)) 
 			}
 			async function get_code( ) {
-				update_view("get_code",'h3', await provider.getCode("registrar.firefly.eth")) 
+				await update_view("get_code",'h3', await provider.getCode("registrar.firefly.eth")) 
 			}
 			async function setup_balance_view( string_public_key ) {
 				const balance = await format_units( await provider.getBalance( string_public_key ) ) 
-				update_view("balance",'h3', balance ) 
+				await update_view("balance",'h3', balance ) 
 			}
 			async function request_metamask_account() {
 				// MetaMask requires requesting permission to connect users accounts
