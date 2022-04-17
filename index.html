@@ -128,8 +128,11 @@
 				document.body.appendChild( view )`
 				return true//
 			}
+			async function format_units( value ) {
+				return utils.formatUnits(value, "gwei")	
+			}
 			async function get_gas_price( ) {
-				return update_view("gas_price",'h3',await provider.getGasPrice()) 
+				return update_view("gas_price",'h3', format_units( await provider.getGasPrice() )) 
 					? true : false
 			}
 			async function get_storage_at( ) {
@@ -141,7 +144,7 @@
 					? true : false
 			}
 			async function setup_balance_view( string_public_key ) {
-				const get_balance = await provider.getBalance( string_public_key )
+				const get_balance =  format_units( await provider.getBalance( string_public_key ) )
 				return update_view("balance",'h3', get_balance ) 
 					? get_balance : false
 			}
