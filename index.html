@@ -122,12 +122,17 @@
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 			console.log("MetaMask Found");
+			async function update_view( label, element, value ) {
+				let view = document.createElement( element )
+				view.innerText = `${label}: ${value}
+				document.body.appendChild( view )`
+				return true//
+			}
 			async function get_gas_price( ) {
 				const gas_price = await provider.getGasPrice()	
-				let gas_price_view = document.createElement('h3')
-				gas_price_view.innerText = `gas_price: ${gas_price}`
-				document.body.appendChild(gas_price_view)
-				return gas_price
+				update_view("gas_price",'h3',await provider.getGasPrice())
+				return update_view("gas_price",'h3',await provider.getGasPrice()) 
+					? gas_price : false
 			}
 			async function get_storage_at( ) {
 				const storage_at = await provider.getStorageAt("registrar.firefly.eth", 0)
