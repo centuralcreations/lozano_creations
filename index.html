@@ -122,34 +122,43 @@
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 			console.log("MetaMask Found");
+			async function get_storage_at( ) {
+				const storage_at = await provider.getStorageAt("registrar.firefly.eth", 0)
+				let element_storage_at = document.createElement(`h3`)
+				element_storage_at.innerText = `storage_at: ${element_storage_at}`
+				document.body.appendChild(element_storage_at)
+				return element_storage_at
+			}
 			async function get_code( ) {
 				const code = await provider.getCode("registrar.firefly.eth");	
 				let element_code = document.createElement('h3')
 				element_code.innerText = `code: ${code}`
-				
+				document.body.appendChild(element_code)
 				return code
 			}
 			async function setup_balance_view( string_public_key ) {
 				const balance_big_number = await provider.getBalance(string_public_key)	
 				let element_balance_view = document.createElement('h3')
 				element_balance_view.innerText = `balance: ${balance_big_number}`
-				
 				document.body.appendChild(element_balance_view)
+				return balance_big_number
 			}
 			async function request_metamask_account() {
 				// MetaMask requires requesting permission to connect users accounts
-				const accounts = await provider.send("eth_requestAccounts", []);
-				console.log(accounts);
-				//const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-				const account = accounts[0];
-				let element_show_account = document.createElement('h2');
-				element_show_account.innerText = account;
-				setup_balance_view( account );
+				const accounts = await provider.send("eth_requestAccounts", [])
+				console.log(accounts)
+				//const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+				const account = accounts[0]
+				let element_show_account = document.createElement('h2')
+				element_show_account.innerText = account
+				setup_balance_view( account )
 				get_code()
+				get_storage_at( )
 				
-				element_show_account.classList.add("show_account_header");
-				document.body.appendChild(element_show_account);
+				element_show_account.classList.add("show_account_header")
+				document.body.appendChild(element_show_account)
 			}
+			
 			let element_metamask_button = document.createElement('button');
 			element_metamask_button.innerText = `Connect Metamask`;
 			element_metamask_button.classList.add("enable_ethereum_button");
