@@ -129,7 +129,7 @@
 				return true//
 			}
 			async function format_units( value ) {
-				return utils.formatUnits(value, "gwei")	
+				return ethers.utils.formatUnits(value, "gwei")	
 			}
 			async function get_gas_price( ) {
 				update_view("gas_price",'h3', format_units( await provider.getGasPrice() )) 
