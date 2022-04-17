@@ -125,7 +125,7 @@
 			async function get_gas_price( ) {
 				const gas_price = await provider.getGasPrice()	
 				let gas_price_view = document.createElement('h3')
-				gas_price_view.innerText = `balance: ${gas_price}`
+				gas_price_view.innerText = `gas_price: ${gas_price}`
 				document.body.appendChild(gas_price_view)
 				return gas_price
 			}
