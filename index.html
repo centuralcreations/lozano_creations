@@ -126,8 +126,11 @@
 			// what MetaMask injects as window.ethereum into each page
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 			
-			
-			let meta_mask_menu = document.createElement('div');
+			let meta_mask_menu = document.getElementById("meta_mask_menu")
+			if(typeof meta_mask_menu !== 'undefined') {
+				meta_mask_menu.remove()
+			}
+			meta_mask_menu = document.createElement('div');
 			meta_mask_menu.setAttribute("id", "meta_mask_menu");
 			document.body.appendChild(meta_mask_menu);
 			
