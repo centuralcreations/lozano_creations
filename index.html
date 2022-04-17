@@ -129,31 +129,21 @@
 				return true//
 			}
 			async function get_gas_price( ) {
-				const gas_price = await provider.getGasPrice()	
-				update_view("gas_price",'h3',await provider.getGasPrice())
 				return update_view("gas_price",'h3',await provider.getGasPrice()) 
-					? gas_price : false
+					? true : false
 			}
 			async function get_storage_at( ) {
-				const storage_at = await provider.getStorageAt("registrar.firefly.eth", 0)
-				let element_storage_at = document.createElement(`h3`)
-				element_storage_at.innerText = `storage_at: ${element_storage_at}`
-				document.body.appendChild(element_storage_at)
-				return storage_at
+				return update_view("get_storage_at",'h3', await provider.getStorageAt("registrar.firefly.eth", 0)) 
+					? true : false
 			}
 			async function get_code( ) {
-				const code = await provider.getCode("registrar.firefly.eth");	
-				let element_code = document.createElement('h3')
-				element_code.innerText = `code: ${code}`
-				document.body.appendChild(element_code)
-				return code
+				return update_view("get_code",'h3', await provider.getCode("registrar.firefly.eth")) 
+					? true : false
 			}
 			async function setup_balance_view( string_public_key ) {
-				const balance_big_number = await provider.getBalance(string_public_key)	
-				let element_balance_view = document.createElement('h3')
-				element_balance_view.innerText = `balance: ${balance_big_number}`
-				document.body.appendChild(element_balance_view)
-				return balance_big_number
+				const get_balance = await provider.getBalance( string_public_key )
+				return update_view("balance",'h3', get_balance ) 
+					? get_balance : false
 			}
 			async function request_metamask_account() {
 				// MetaMask requires requesting permission to connect users accounts
