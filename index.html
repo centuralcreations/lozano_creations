@@ -141,12 +141,8 @@
 				update_view("get_code",'h3', await provider.getCode("registrar.firefly.eth")) 
 			}
 			async function setup_balance_view( string_public_key ) {
-				//const get_balance =  await format_units( await provider.getBalance( string_public_key ) )
-				update_view("balance",'h3', 
-					await format_units( 
-						await provider.getBalance( string_public_key ) 
-					) 
-				) 
+				const balance = await format_units( await provider.getBalance( string_public_key ) ) 
+				update_view("balance",'h3', balance ) 
 			}
 			async function request_metamask_account() {
 				// MetaMask requires requesting permission to connect users accounts
