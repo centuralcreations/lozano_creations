@@ -120,6 +120,13 @@
 			// A Web3Provider wraps a standard Web3 provider, which is
 			// what MetaMask injects as window.ethereum into each page
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
+			
+			
+			let meta_mask_menu = document.createElement('div');
+			meta_mask_menu.setAttribute("id", "meta_mask_menu");
+			document.body.appendChild(meta_mask_menu);
+			
+			//let meta_mask_menu = document.getElementById("meta_mask_menu");
 
 			console.log("MetaMask Found");
 			
@@ -139,7 +146,7 @@
 			async function update_view( label, element, value ) {
 				let view = document.createElement( element )
 				view.innerText = `${label}: ${value}`
-				document.body.appendChild( view )
+				meta_mask_menu.append( view )
 			}
 			async function format_units( value ) {
 				const format = await ethers.utils.formatUnits(value, "gwei")
@@ -175,6 +182,7 @@
 				document.body.appendChild(element_show_account)
 			}
 			
+			//const signer = provider.getSigner()
 			let element_metamask_button = document.createElement('button');
 			element_metamask_button.innerText = `Connect Metamask`;
 			element_metamask_button.classList.add("enable_ethereum_button");
