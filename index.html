@@ -199,6 +199,7 @@
 			document.body.appendChild(element_metamask_button);
 			
 			element_metamask_button.addEventListener('click', () => {
+				element_metamask_button.style.display = "none"
 				request_metamask_account()
 			});
 		} else {
