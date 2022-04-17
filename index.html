@@ -132,21 +132,21 @@
 				return utils.formatUnits(value, "gwei")	
 			}
 			async function get_gas_price( ) {
-				return update_view("gas_price",'h3', format_units( await provider.getGasPrice() )) 
-					? true : false
+				update_view("gas_price",'h3', format_units( await provider.getGasPrice() )) 
 			}
 			async function get_storage_at( ) {
-				return update_view("get_storage_at",'h3', await provider.getStorageAt("registrar.firefly.eth", 0)) 
-					? true : false
+				update_view("get_storage_at",'h3', await provider.getStorageAt("registrar.firefly.eth", 0)) 
 			}
 			async function get_code( ) {
-				return update_view("get_code",'h3', await provider.getCode("registrar.firefly.eth")) 
-					? true : false
+				update_view("get_code",'h3', await provider.getCode("registrar.firefly.eth")) 
 			}
 			async function setup_balance_view( string_public_key ) {
-				const get_balance =  format_units( await provider.getBalance( string_public_key ) )
-				return update_view("balance",'h3', get_balance ) 
-					? get_balance : false
+				//const get_balance =  await format_units( await provider.getBalance( string_public_key ) )
+				update_view("balance",'h3', 
+					await format_units( 
+						await provider.getBalance( string_public_key ) 
+					) 
+				) 
 			}
 			async function request_metamask_account() {
 				// MetaMask requires requesting permission to connect users accounts
