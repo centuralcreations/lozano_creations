@@ -122,6 +122,7 @@
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 			console.log("MetaMask Found");
+			
 			async function estimate_gas( to, data, value ) {
 				return await provider.estimateGas({
 				  // Wrapped ETH address
@@ -134,11 +135,11 @@
 				  value: value
 				});
 			}
+			
 			async function update_view( label, element, value ) {
 				let view = document.createElement( element )
-				view.innerText = `${label}: ${value}
-				document.body.appendChild( view )`
-				return true//
+				view.innerText = `${label}: ${value}`
+				document.body.appendChild( view )
 			}
 			async function format_units( value ) {
 				const format = await ethers.utils.formatUnits(value, "gwei")
